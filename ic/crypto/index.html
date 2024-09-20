@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>ZIM - Code Creativity</title>
+
+<!-- zimjs.com - JavaScript Canvas Framework -->
+<script type="module">
+
+// bring in game module for timer and scorer
+import zim from "https://zimjs.org/cdn/016/zim_game";
+
+const coinNames = ["bitcoin.png", "ethereum.png", "ripple.png", "tether.png"];
+const assets = [...coinNames, "head.png", "gf_Roboto", "Computer.ttf"]; // ES6 (JavaScript 6) spread operator
+const path = "assets/";
+
+// See Docs under Frame for FIT, FILL, FULL, and TAG
+new Frame(FIT, 1024, 768, interstellar, black, ready, assets, path);
+function ready() {
+    
+
+    // given F (Frame), S (Stage), W (width), H (height)
+    // put code here
+    
+    // ARRAYS - all languages
+
+    // const array = [12, 31, 33, 19, "hello"];
+    // zogb(array[0]); // [index] are the array access operator
+    // // zogy(array.length);
+    // array.push("goodbye"); // adds to end of array
+    // const last = array.pop(); // takes the last element off the array
+    // zogo(last);
+    // zogp(array[array.length-1]); // log last element
+
+    // array[2] = 99; // can change any element with index num in []
+
+    // array.unshift(10); // adds to start of array
+    // zogd(array[0]);
+    // const first = array.shift();
+    // zogl(first);
+    // zog(array);
+
+    // const nested = ["A", "B", ["C", "D"]];
+    // zogg(nested[2][1]) // so that it says "D"
+
+    // // sort(), reverse(), indexOf(), contains(), slice(), splice(), concat();
+
+
+    // // LOOP - all languages with slightly different formats
+
+    // // start, loop condition, iterator (what to do each time)
+    // // Raw JS
+    // for (let i=0; i<array.length; i++) { // i++ means increase by 1
+    //     zog(i, array[i]);
+    // }
+
+    // array.forEach(item=>{
+    //     zogy(item)
+    // });
+
+    // // ZIM Loop
+    // loop(10, i=>{
+    //     zogb(i);
+    // });
+
+    // loop(array, item=>{
+    //     zogp(item);
+    // });
+
+    // Falling!
+
+    // INTERVAL 
+
+    // // Raw JS
+    // // only assign interval if need to clear
+    // const inter = setInterval(()=>{ // runs forever unless cleared
+    //     zog("setInterval");
+    // }, 1000); // function, time in ms milliseconds
+
+    // setTimeout(()=>{ // runs once
+    //     zog("setTimeout");
+    // }, 1500);
+
+    // setTimeout(()=>{
+    //     clearInterval(inter);
+    // }, 5000);
+
+    // // ZIM Interval 
+
+    // const inter2 = interval(1, ()=>{
+    //     zogg("interval");
+    // });
+
+    // timeout(1.5, ()=>{
+    //     zogp("timeout");
+    // });
+
+    // timeout(5, ()=>{
+    //     inter2.clear();
+    // })
+
+    // circle.on("click", e=>{
+    //     zog(e.target)
+    // })
+
+    // can pass in a ZIM VEE value 
+    // [1,2,3] would pick randomly 
+    // series(1,2,3) then it picks these in order
+    // results of a function
+    // {min, max} range to pick from
+    // interval({min:.5, max:2}, obj=>{
+    //     zog(obj.count)
+    //     // if the count is bigger than 5 clear the interval
+    //     // if (obj.count >= 5) obj.clear();
+        
+    // }, 14, true); // number of times, run right away
+
+    const coins = new Container(W,H).addTo();
+    
+    interval({min:.1, max:1}, ()=>{
+        // raw JS
+        // const coinName = coins[Math.floor(Math.random()*coins.length)]; floor to take of decimals
+        // using ZIM Functions
+        // const coinName = coins[rand(coins.length-1)];
+        // const coinName = shuffle(coins)[0]
+        // const coinName = pluck(coins);
+        // or Pic() use ZIM VEE
+        const coin = new Pic(coinNames).sca(.8);
+        coin
+            .loc(rand(0,W-coin.width), -100, coins)
+            .animate({
+                props:{y:H},
+                time:rand(3,5),
+                ease:"linear",
+                call:target=>{
+                    // target.removeFrom()
+                    target.dispose();
+                }
+            });
+        coin.score = rand(1,5)*100;
+        
+        // S.update(); // do not need if animating
+    })
+
+    const head = new Pic("head.png")
+        .sca(.3)
+        .reg(CENTER)        
+        .pos(0,0,CENTER,BOTTOM)
+        .bot() // add to bottom layer of container - also .top() and .ord(2)
+
+    // Ticker is a requestAnimationFrame()
+    // use Ticker class directly (static method)
+    // Ticker.add(()=>{
+    //     // head.x = head.x + 1; // adds 1 to the head
+    //     // head.x++; // adds 1 to the head
+    //     // head.x = head.x + 5; // adds 1 to the head
+    //     // head.x += 5;
+    // })
+
+    // F.on("keydown", e=>{
+    //     zogp(e.key);   
+    //     // not good because of built in key delay 
+    //     if (e.key=="ArrowRight") head.x+=5;    
+    // })
+
+    new MotionController({
+        target:head, 
+        type:"keydown",
+        axis:HORIZONTAL,
+        // head will go half off the stage
+        // boundary:S
+        // x, y, width, height
+        // adjust so head stays on the stage
+        boundary:new Boundary(head.width/2,head.y,W-head.width,0)
+    });
+
+
+    Ticker.add(()=>{
+        coins.loop(coin=>{
+            // coin.alpha -= .01;
+            // if (coin.hitTestBounds(head, -20)) {
+            if (head.hitTestCircle(coin)) {
+                // coin.removeFrom();
+                coin.dispose();
+                // cast as number
+                // scoreLabel.text = Number(scoreLabel.text) + 100
+                scorer.score += coin.score;
+            }
+        }, true); // true for loop backwards when removing        
+    })
+
+    // const scoreLabel = new Label(0, 50, null, white)
+    //     .pos(50,50,RIGHT)
+
+    const timer = new Timer().pos(50,50);
+    const scorer = new Scorer().pos(50,50,RIGHT);
+
+    new Label("CRYPTO CATCH", 65, "Computer", pink)
+        .loc(246, 42)
+        // .place()
+        // .pos(0,40,CENTER);
+
+    
+    
+} // end ready
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>

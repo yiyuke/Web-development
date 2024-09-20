@@ -1,0 +1,12 @@
+  <grocerylist>
+    <fruits>
+      <fruit>apple</fruit>
+      <fruit>banana</fruit>
+      <fruit>strawberries</fruit>
+    </fruits>
+    <veggies>
+      <veggie>tomatoes</veggie>
+      <veggie>spinach</veggie>
+      <veggie>lettuce</veggie>
+    </veggies>
+  </grocerylist>

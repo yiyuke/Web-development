@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>ZIM - Code Creativity</title>
+
+<!-- zimjs.com - JavaScript Canvas Framework -->
+<script type="module">
+
+import zim from "https://zimjs.org/cdn/016/zim";
+
+// See Docs under Frame for FIT, FILL, FULL, and TAG
+new Frame(FIT, 1024, 768, light, dark, ready);
+function ready() {
+    
+    // given F (Frame), S (Stage), W (width), H (height)
+    // put code here
+    
+    let x = 3;
+    if (x > 5){
+        zogb("Yay");
+    } else{
+        zogr("Boo");
+    }
+
+    const circle = new Circle(100, purple)
+        .center()
+        .drag({onTop:false});
+
+    const slider = new Slider(1, 3)
+        .pos(0,50,CENTER,BOTTOM)
+    slider.on("change", ()=>{
+        zog(slider.currentValue)
+        circle.scale = slider.currentValue
+        if (circle.scale > 2.5){
+            circle.color = red
+            zogr("sound starting")
+        } else(
+            circle.color = purple
+        )
+    })
+
+        
+} // end ready
+
+</script>
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+</head>
+<body></body>
+</html>
