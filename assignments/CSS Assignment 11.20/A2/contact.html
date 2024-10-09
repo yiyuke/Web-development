@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact IMM News Network</title>
+    <link rel="icon" href="images/favcion.ico" type="image/x-icon">
+    <meta name="description" content="Contact IMM News Network for inquiries, feedback, or to join our community of industry professionals and tech enthusiasts.">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="IMM News Network Logo" width="150" height="50">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Contact Us</h1>
+        
+        <p>We'd love to hear from you! Whether you have a question, feedback, or want to contribute to our network, please fill out the form below.</p>
+
+        <form action="process-contact.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <fieldset>
+                <legend>Category Interests (select all that apply):</legend>
+                <input type="checkbox" id="industry" name="interests[]" value="Industry">
+                <label for="industry">Industry</label>
+
+                <input type="checkbox" id="technical" name="interests[]" value="Technical">
+                <label for="technical">Technical</label>
+
+                <input type="checkbox" id="career" name="interests[]" value="Career">
+                <label for="career">Career</label>
+            </fieldset>
+
+            <label for="role">Your Role:</label>
+            <select id="role" name="role" required>
+                <option value="">Select your role</option>
+                <option value="Writer">Writer</option>
+                <option value="Contributor">Contributor</option>
+                <option value="Administrator">Administrator</option>
+            </select>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>This website uses cookies to ensure you get the best experience. <a href="#">Accept cookies</a></p>
+    </footer>
+</body>
+</html>

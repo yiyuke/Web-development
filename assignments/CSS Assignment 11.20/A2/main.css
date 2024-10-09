@@ -1,0 +1,55 @@
+body{
+    font-size: 16px;
+}
+
+h1, h2, h3{
+    font-size: 1.5em; 
+}
+
+header{
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+main{
+    margin-left: 20px;
+}
+
+#featured-article{
+    width:fit-content;
+    border-width: 4px;
+    border-style: solid;
+    border-color: rgb(22, 149, 198);
+    padding: 10px 40px 10px 40px;
+}
+
+#industry-news{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width:min-content;
+    border-width: 4px;
+    border-style:dotted;
+    border-color: rgb(252, 113, 33);
+    padding: 10px 40px 10px 40px;
+}
+
+#technical-news{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width:min-content;
+    border-width: 4px;
+    border-style:double;
+    border-color: rgb(41, 161, 65);
+    padding: 10px 40px 10px 40px;
+}
+
+#career-news{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width:min-content;
+    border-width: 4px;
+    border-style:outset;
+    border-color: rgb(207, 0, 7);
+    padding: 10px 40px 10px 40px;
+}
+
