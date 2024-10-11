@@ -1,16 +1,16 @@
 // Create an object to store site visitor data
 const siteVisitors = {
-    'April': 1200,
-    'May': 1500,
-    'June': 1800,
-    'July': 2100,
-    'August': 2400,
-    'September': 2700
+    April: 1200,
+    May: 1500,
+    June: 1800,
+    July: 2100,
+    August: 2400,
+    September: 2700
 };
 
-// Function to create and populate the table
+// Function to create the table in HTML
 function createVisitorsTable() {
-    const table = document.createElement('table');
+    const table = document.createElement("table");
     table.innerHTML = `
         <tr>
             <th>Month</th>
@@ -26,9 +26,7 @@ function createVisitorsTable() {
         `;
     }
 
-    // Append the table to the body (you might want to append it to a specific container instead)
     document.body.appendChild(table);
 }
 
-// Call the function to create the table
 createVisitorsTable();
